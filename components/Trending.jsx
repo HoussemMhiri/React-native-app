@@ -4,7 +4,6 @@ import * as Animatable from "react-native-animatable";
 import { TouchableOpacity } from "react-native";
 import { icons } from "../constants";
 import { ResizeMode, Video } from "expo-av";
-import WebView from "react-native-webview";
 
 const zoomIn = {
   0: {
@@ -33,11 +32,17 @@ const TrendingItem = ({ activeItem, item }) => {
       duration={500}
     >
       {play ? (
-        <WebView
+        <Video
           source={{ uri: item.video }}
-          resizeMode="contain"
-          className="w-52 h-72 rounded-[35px] mt-3 bg-white/10"
-          allowsInlineMediaPlayback
+          className="w-52 h-72 rounded-[33px] mt-3 bg-white/10"
+          resizeMode={ResizeMode.CONTAIN}
+          useNativeControls
+          shouldPlay
+          onPlaybackStatusUpdate={(status) => {
+            if (status.didJustFinish) {
+              setPlay(false);
+            }
+          }}
         />
       ) : (
         <TouchableOpacity
