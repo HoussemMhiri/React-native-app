@@ -38,11 +38,11 @@ const TabsLayout = () => {
             borderTopWidth: 1,
             borderTopColor: "#232533",
             height: 80,
-            position: "relative", // Keep tab bar in its normal position
+            position: "relative",
           },
           tabBarIconStyle: {
-            position: "absolute", // Move icons and text outside the tab bar area
-            bottom: 25, // Position below the border line
+            position: "absolute",
+            bottom: 25,
           },
         }}
       >

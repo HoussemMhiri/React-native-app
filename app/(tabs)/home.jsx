@@ -15,8 +15,10 @@ import EmptyState from "../../components/EmptyState";
 import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
 import useAppwrite from "../../lib/useAppwrite";
 import VideoCard from "../../components/VideoCard";
+import { useGlobalContext } from "../../context/GlobalProvider";
 
 const Home = () => {
+  const { user, setUser, setIsLogged } = useGlobalContext();
   const { data: posts, refetch } = useAppwrite(getAllPosts);
   const { data: LatestPosts } = useAppwrite(getLatestPosts);
   const [refreshing, setRefreshing] = useState(false);
@@ -42,7 +44,9 @@ const Home = () => {
                 <Text className="font-pmedium text-sm text-gray-100">
                   Welcome back
                 </Text>
-                <Text className="text-2xl font-psemibold text-white">HM</Text>
+                <Text className="text-2xl font-psemibold text-white">
+                  {user?.username}
+                </Text>
               </View>
               <View className="mt-1.5">
                 <Image
